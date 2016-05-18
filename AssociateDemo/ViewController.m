@@ -113,13 +113,26 @@
 -(void)hadndleAssoDataWithSearchTxet:(NSString *)searchText{
     
     self.assoTableArray = [NSMutableArray array];
-    for (NSString *str  in self.assoArray) {
-        NSRange range = [str rangeOfString:searchText];
-        
-        if (range.location == 0) {
+//    for (NSString *str  in self.assoArray) {
+//        NSRange range = [str rangeOfString:searchText];
+//        
+//        if (range.location == 0) {
+//            [self.assoTableArray addObject:str];
+//        }
+//    }
+    
+    for (NSString *str in self.assoArray) {
+        if([str rangeOfString:searchText].location !=NSNotFound)
+        {
             [self.assoTableArray addObject:str];
         }
+        else
+        {
+//            NSLog(@"no");
+        }
     }
+    
+    
     if (self.assoTableArray.count > 0) {
         self.assoTableView.hidden = NO;
         [self.view bringSubviewToFront:self.assoTableView];
